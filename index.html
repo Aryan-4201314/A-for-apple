@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Nanu 💙</title>
+<style>
+:root{--blue:#5bbce9;--deep:#247eae;--pink:#ffb8d1;--cream:#fffaf3;--ink:#35536b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eaf9ff,#fff0f6);overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0}
+.hidden{display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 15% 15%,#fff 0 4%,transparent 5%),linear-gradient(145deg,#bcecff,#ffe1ed)}
+.gate-card{width:min(440px,100%);padding:34px 26px;text-align:center;background:#ffffffdf;border:2px solid white;border-radius:30px;box-shadow:0 18px 50px #5799b333}
+.mascot{font-size:4rem;display:block;animation:bob 2s ease-in-out infinite}
+h1,h2{font-family:Georgia,serif}
+.gate-card h1{font-size:2rem;margin:10px 0;color:var(--deep)}
+.gate-card p{line-height:1.6}
+input[type=password]{width:100%;padding:14px 16px;border:2px solid #b9e5f7;border-radius:14px;font-size:1rem;outline:none;margin:10px 0}
+input:focus{border-color:var(--deep)}
+.robot{display:flex;gap:10px;align-items:center;justify-content:center;margin:10px auto 18px;background:#f7fcff;border:1px solid #d5edf8;padding:12px;border-radius:12px;width:max-content;max-width:100%}
+.robot input{width:19px;height:19px;accent-color:var(--deep)}
+.primary{padding:13px 24px;border-radius:30px;background:var(--deep);color:white;font-weight:bold;box-shadow:0 6px 0 #175d83;transition:.2s}
+.primary:active{transform:translateY(4px);box-shadow:0 2px 0 #175d83}
+#error{color:#d64b78;min-height:24px;font-size:.9rem}
+#site{display:none}
+header{text-align:center;padding:45px 18px 35px;position:relative;overflow:hidden;background:linear-gradient(130deg,#8edcff,#d8f5ff 55%,#ffe0ed)}
+header h1{font-size:clamp(2.2rem,7vw,4rem);color:#176f9e;margin:12px 0}
+header p{font-size:1.08rem;margin:0}
+.badge{display:inline-block;padding:7px 14px;border-radius:30px;background:#ffffffb8;color:#247eae;font-size:.85rem}
+.doodle{position:absolute;font-size:2rem;opacity:.65;animation:bob 3s ease-in-out infinite}
+.d1{left:8%;top:20%}.d2{right:9%;top:25%;animation-delay:.7s}.d3{left:17%;bottom:12%;animation-delay:1s}.d4{right:18%;bottom:10%;animation-delay:.4s}
+nav{position:sticky;top:0;z-index:5;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px;background:#ffffffed;backdrop-filter:blur(8px);box-shadow:0 3px 14px #477b9617}
+nav a{color:var(--deep);text-decoration:none;font-weight:bold;font-size:.88rem;padding:8px 12px;border-radius:20px}
+nav a:hover{background:#e6f7ff}
+section{width:min(950px,92%);margin:36px auto;padding:28px 20px;text-align:center}
+.section-title{font-size:2rem;color:var(--deep);margin:0 0 8px}
+.sub{margin:0 auto 24px;max-width:600px;line-height:1.6;color:#627d90}
+.card-wrap{perspective:1000px;max-width:480px;margin:24px auto;min-height:260px}
+.bday-card{position:relative;min-height:260px;border-radius:22px;background:linear-gradient(135deg,#fff,#e9f8ff);border:2px solid white;box-shadow:0 12px 30px #5299b52b;padding:30px 22px;display:grid;place-items:center;transition:transform .7s;cursor:pointer}
+.bday-card.open{background:linear-gradient(135deg,#fff0f6,#e7f8ff);transform:rotateY(4deg)}
+.card-front h3{font-family:Georgia,serif;font-size:1.8rem;color:#2583b1;margin:8px}
+.card-front .envelope{font-size:4rem}
+.card-inside{display:none;line-height:1.8}
+.bday-card.open .card-front{display:none}
+.bday-card.open .card-inside{display:block;animation:fade .6s}
+.cake-area{background:#ffffffa8;border:1px solid white;border-radius:26px;padding:25px 15px;max-width:520px;margin:auto;box-shadow:0 10px 28px #4d8fa51c}
+.cake{position:relative;width:210px;height:155px;margin:25px auto 18px}
+.plate{position:absolute;bottom:0;left:0;width:210px;height:18px;border-radius:50%;background:#c8e8f5;box-shadow:0 5px 0 #9bcfe3}
+.layer{position:absolute;left:20px;width:170px;height:58px;border-radius:12px 12px 18px 18px;background:#8ed5f2;border-bottom:8px solid #58b6df;bottom:15px}
+.layer:before{content:"";position:absolute;top:-12px;left:0;width:100%;height:24px;background:#fff1f7;border-radius:50%}
+.icing{position:absolute;bottom:61px;left:20px;width:170px;height:20px;background:#ffd0e1;border-radius:50%}
+.candle{position:absolute;bottom:88px;left:99px;width:12px;height:40px;background:repeating-linear-gradient(45deg,#fff 0 5px,#ff9fbd 5px 10px);border-radius:4px;z-index:2}
+.flame{position:absolute;top:-22px;left:1px;width:10px;height:17px;border-radius:50% 50% 50% 0;background:#ffb52e;transform:rotate(-45deg);box-shadow:0 0 17px #ffbd45;animation:flicker .5s infinite alternate}
+.candle.out .flame{display:none}
+.cake-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+.soft{background:#ffe3ee;color:#a74670;padding:12px 18px;border-radius:25px;font-weight:bold}
+#wishMessage{min-height:48px;margin-top:15px;font-weight:bold;color:#277fa8}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:22px;max-width:760px;margin:25px auto}
+.polaroid{background:white;padding:12px 12px 18px;box-shadow:0 8px 20px #476e8528;transform:rotate(var(--tilt));transition:.25s}
+.polaroid:hover{transform:rotate(0) translateY(-7px)}
+.photo-placeholder{height:170px;background:linear-gradient(135deg,#d8f3ff,#ffe3ee);display:grid;place-items:center;font-size:2.7rem;color:#5b9fbd}
+.polaroid img{width:100%;height:170px;object-fit:cover;display:block}
+.polaroid p{margin:12px 0 0;font-family:Georgia,serif;font-size:1rem;color:#62717b}
+.note{max-width:690px;margin:auto;text-align:left;padding:30px clamp(20px,5vw,45px);background:#fffdf8;border-radius:8px;box-shadow:0 10px 30px #597a8720;position:relative;line-height:1.9}
+.note:before{content:"✿";position:absolute;right:20px;top:8px;font-size:2rem;color:#f3a9c5}
+.note h3{text-align:center;color:#287fa8;font-family:Georgia,serif;font-size:1.6rem}
+footer{text-align:center;padding:35px 15px 55px;color:#658195}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+.confetti-piece{position:absolute;top:-20px;width:9px;height:14px;animation:fall 3.2s linear forwards}
+@keyframes bob{50%{transform:translateY(-9px) rotate(4deg)}}
+@keyframes flicker{to{transform:rotate(-35deg) scale(.85)}}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.8}}
+@media(max-width:500px){section{padding:22px 10px;margin:25px auto}.note{padding:26px 20px}.gallery{gap:16px}.photo-placeholder,.polaroid img{height:145px}}
+</style>
+</head>
+<body>
+<div id="confetti"></div>
+
+<div id="gate">
+  <div class="gate-card">
+    <span class="mascot">🐱🔔</span>
+    <div class="badge">A tiny surprise is waiting...</div>
+    <h1>Secret Entry 💙</h1>
+    <p>Only someone special knows the secret code!</p>
+    <input id="password" type="password" placeholder="Enter the secret code" autocomplete="off">
+    <label class="robot"><input id="robotCheck" type="checkbox"> I'm not a robot 🤖</label>
+    <button class="primary" onclick="unlock()">Open the surprise ✨</button>
+    <div id="error" aria-live="polite"></div>
+    <small>Demo password: <b>NANU</b></small>
+  </div>
+</div>
+
+<div id="site">
+<header>
+  <span class="doodle d1">⭐</span><span class="doodle d2">💙</span>
+  <span class="doodle d3">🎀</span><span class="doodle d4">☁️</span>
+  <div class="badge">A little corner made with care</div>
+  <h1>Happy Birthday, Nanu! 🎂</h1>
+  <p>A small surprise for a genuinely special friend.</p>
+</header>
+<nav>
+  <a href="#card">Birthday Card</a><a href="#cake">Make a Wish</a><a href="#gallery">Memories</a><a href="#note">A Little Note</a>
+</nav>
+
+<section id="card">
+  <h2 class="section-title">A Birthday Card 💌</h2>
+  <p class="sub">There's a little message inside. Tap the card to open it!</p>
+  <div class="card-wrap">
+    <div class="bday-card" id="birthdayCard" onclick="this.classList.toggle('open')" role="button" tabindex="0" aria-label="Open birthday card">
+      <div class="card-front"><div class="envelope">💌</div><h3>For Nanu</h3><p>Tap to open your card ✨</p></div>
+      <div class="card-inside"><div style="font-size:2.5rem">🎉💙🎀</div><h3>Happy Birthday!</h3><p>Wishing you a day full of laughter, lovely surprises and all the happiness you deserve. Keep being your wonderful self!</p><b>— From YOUR NAME</b><p><small>Tap again to close</small></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cake">
+  <h2 class="section-title">Make a Wish! 🎂</h2>
+  <p class="sub">Take a moment, make a wish, and tap the button to blow out the candle.</p>
+  <div class="cake-area">
+    <div class="cake">
+      <div class="plate"></div><div class="layer"></div><div class="icing"></div>
+      <div class="candle" id="candle"><div class="flame"></div></div>
+    </div>
+    <div class="cake-controls">
+      <button class="primary" id="wishButton" onclick="makeWish()">Make a Wish ✨</button>
+      <button class="soft" onclick="relight()">Light it again 🕯️</button>
+    </div>
+    <div id="wishMessage" aria-live="polite">Your wish can be anything. 💫</div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2 class="section-title">Little Moments 📸</h2>
+  <p class="sub">A few photo spaces for favourite memories. Replace these demo tiles with real pictures later.</p>
+  <div class="gallery">
+    <div class="polaroid" style="--tilt:-3deg"><div class="photo-placeholder">📷<br><small>photo1.jpg</small></div><p>A favourite memory</p></div>
+    <div class="polaroid" style="--tilt:2deg"><div class="photo-placeholder">🌷<br><small>photo2.jpg</small></div><p>That happy moment</p></div>
+    <div class="polaroid" style="--tilt:-2deg"><div class="photo-placeholder">☀️<br><small>photo3.jpg</small></div><p>Good times together</p></div>
+    <div class="polaroid" style="--tilt:3deg"><div class="photo-placeholder">💙<br><small>photo4.jpg</small></div><p>One for the memories</p></div>
+  </div>
+</section>
+
+<section id="note">
+  <h2 class="section-title">A Little Note for You 🥹</h2>
+  <p class="sub">Some things deserve more than just a birthday wish.</p>
+  <div class="note">
+    <h3>Dear Nanu,</h3>
+    <p>Happy Birthday! I hope this year brings you countless reasons to smile, new experiences to enjoy, and people who make you feel appreciated.</p>
+    <p>Thank you for being such a lovely friend and for all the little moments that make school days more memorable. Never stop being your cheerful, unique self. And whenever life gets a little hectic, I hope you remember how much good you bring to the people around you.</p>
+    <p>Have the happiest birthday. Keep smiling, keep growing, and may this new year of your life be full of beautiful surprises!</p>
+    <p style="text-align:right"><b>With lots of good wishes,<br>YOUR NAME 💙</b></p>
+  </div>
+</section>
+<footer>Made with 💙, a little creativity & lots of good wishes.<br><small>Just for you, Nanu ✨</small></footer>
+</div>
+
+<script>
+const SECRET_CODE = "NANU"; // Change this for the real birthday version.
+
+function unlock(){
+  const entered=document.getElementById("password").value.trim();
+  const checked=document.getElementById("robotCheck").checked;
+  const error=document.getElementById("error");
+  if(!checked){error.textContent="Please tick the robot check first 🤖";return;}
+  if(entered.toUpperCase()!==SECRET_CODE){error.textContent="Hmm... wrong secret code. Try again! 💭";return;}
+  document.getElementById("gate").style.display="none";
+  document.getElementById("site").style.display="block";
+  window.scrollTo(0,0);
+  confettiBurst();
+}
+document.getElementById("password").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+
+function makeWish(){
+  document.getElementById("candle").classList.add("out");
+  document.getElementById("wishMessage").textContent="Wish made? ✨ May something wonderful find its way to you! 💙";
+  document.getElementById("wishButton").textContent="Wish sent! 💫";
+  confettiBurst();
+}
+function relight(){
+  document.getElementById("candle").classList.remove("out");
+  document.getElementById("wishMessage").textContent="The candle is glowing again. Make another wish! 🕯️";
+  document.getElementById("wishButton").textContent="Make a Wish ✨";
+}
+function confettiBurst(){
+  const box=document.getElementById("confetti");
+  const colors=["#69c8ef","#ff9fbe","#ffd166","#a8e6cf","#b9a5f5"];
+  for(let i=0;i<85;i++){
+    const bit=document.createElement("i");
+    bit.className="confetti-piece";
+    bit.style.left=Math.random()*100+"%";
+    bit.style.background=colors[Math.floor(Math.random()*colors.length)];
+    bit.style.animationDelay=Math.random()*.8+"s";
+    bit.style.transform=`rotate(${Math.random()*180}deg)`;
+    box.appendChild(bit);
+    setTimeout(()=>bit.remove(),4200);
+  }
+}
+// Keyboard support for the birthday card
+document.getElementById("birthdayCard").addEventListener("keydown",e=>{
+  if(e.key==="Enter"||e.key===" "){e.preventDefault();e.currentTarget.classList.toggle("open")}
+});
+</script>
+</body>
+</html>
